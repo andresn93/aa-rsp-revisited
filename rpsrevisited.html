@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>rsp revisited</title>
+	</head>
+
+<body>
+
+    <script type="text/javascript">
+    var hands = ["rock", "paper", "scissors"];
+
+
+//my player
+   var players = [
+        {
+            name: "player1",
+            hand:  function(){ return hands[parseInt((Math.random()*hands.length)%3)];},
+            wins: 0
+        },
+        {
+         name: "player2",
+         hand:  function(){ return hands[parseInt((Math.random()*hands.length)%3)];},
+         wins: 0
+             }
+       ];
+
+
+	function playRound(){
+
+	    p1hand = players[0].hand();
+	    p2hand = players[1].hand();
+
+	    if(p1hand == p2hand){
+	        
+	        console.log('Draw'); 
+	        
+	    }else if(
+	                (p1hand == 'scissors' && p2hand == 'paper') ||
+	                (p1hand == 'rock' && p2hand == 'scissors')  ||
+	                (p1hand == 'paper' && p2hand == 'rock') 
+	                ){
+
+	                    players[0].wins++;
+	                    console.log(players[0].name + ' wins');
+	    }else{
+	                    players[1].wins++;
+	                    console.log(players[1].name + ' wins');
+	    }
+
+
+
+	}
+
+	var matchwins = 3;
+
+	function playGame(){
+
+	    while(
+	            players[0].wins < matchwins &&
+	            players[1].wins < matchwins
+	        ){
+
+	        playRound();
+
+	    }
+
+	    if(players[0].wins == matchwins){
+	        console.log(players[0].name + ' wins the match');
+	    }else{
+	        console.log(players[1].name + ' wins the match');
+	    }
+
+	}
+
+
+	playGame();
+
+    </script>
+
+
+</body>
+</html>
+
+
